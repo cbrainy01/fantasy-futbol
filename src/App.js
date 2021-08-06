@@ -1,5 +1,4 @@
 import Players from './Players';
-import {useEffect, useState} from 'react'
 import FantasyTeams from './FantasyTeams';
 import CreateFantasyTeam from './CreateFantasyTeam';
 
