@@ -9,15 +9,15 @@ function Players() {
     useEffect(() => {
       fetch("http://localhost:9393/players/")
       .then(r => r.json())
-      .then( responseData => {setPlayers(responseData.players)} )
+      .then( responseData => { setPlayers(responseData.players); console.log(responseData.players) }  )
     //   .catch(err => {puts err});
     }, [])
     
-    const renderPlayers = players.map( player => {<Player player={player}/>} )
+    const renderPlayers = players.map( player => <Player key={player.id} player={player}/> )
     
     return (
         <div>
-            All players
+            <h2>Players</h2>
             {renderPlayers}
         </div>
     )
