@@ -7,6 +7,7 @@ import {v4 as uuid} from "uuid"
 function Players() {
     
     const [players, setPlayers] = useState([])
+    const [slot1Player, setSlot1Player] = useState("")
   
     useEffect(() => {
       fetch("http://localhost:9393/players/")
@@ -28,6 +29,7 @@ function Players() {
         console.log("selected player's id: ", event.target.value)
         const playerObj = players.find( (player) => player.id === event.target.value )
         console.log("Player object: ", playerObj)
+        setSlot1Player(playerObj)
     }
 
 
