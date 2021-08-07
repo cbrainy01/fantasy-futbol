@@ -27,15 +27,24 @@ function Players() {
 
     function handleSlot1Change(event) {
         console.log("selected player's id: ", event.target.value)
-        const playerObj = players.find( (player) => player.id === event.target.value )
+        const playerObj = players.find( (player) => player.id == event.target.value )
         console.log("Player object: ", playerObj)
         setSlot1Player(playerObj)
+    }
+
+    function renderSlot1() {
+        if(slot1Player === "select player") {
+            return "No player Selected"
+        }
+        else {
+            return <Player key={uuid()} player={slot1Player}/>
+        }
     }
 
 
 
 
-    const renderPlayers = players.map( player => <Player key={player.id} player={player}/> )
+    // const renderPlayers = players.map( player => <Player key={player.id} player={player}/> )
     
     return (
         <div>
@@ -45,8 +54,8 @@ function Players() {
                 {optionDropdown1()}
             </select>
 
-            {renderPlayers}
-            {/* <div>{renderSlot1}</div> */}
+            {/* {renderPlayers} */}
+            <div>Slot 1: {renderSlot1()}</div>
             {/* <div>{renderSlot2}</div> */}
         </div>
     )
