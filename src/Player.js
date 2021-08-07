@@ -15,6 +15,8 @@ function Player({player}) {
             <p>Assists: {player.assists}</p>
             <p>Goal Involvements: {player.goal_involvements}</p>
             <p>Saves: {player.saves}</p>
+            {/* select fantasy team to add to */}
+            {/* add to team button */}
         </div>
     )
 }
