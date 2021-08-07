@@ -1,6 +1,8 @@
 import React from 'react'
 import {useEffect, useState} from 'react'
+import CreateFantasyTeam from './CreateFantasyTeam'
 import FantasyTeam from './FantasyTeam'
+import {v4 as uuid} from "uuid"
 
 function FantasyTeams() {
     
@@ -9,14 +11,21 @@ function FantasyTeams() {
     useEffect(() => {
         fetch("http://localhost:9393/fantasy_teams/")
       .then(r => r.json())
-      .then( responseData => { setFantasyTeams(responseData.teams) }  )
+      .then( responseData => { setFantasyTeams(responseData.teams); console.log("INITIAL FETCH: ", responseData.teams) }  )
     }, [])
     
-    const renderTeams = fantasyTeams.map( team => <FantasyTeam key={team.id} team={team}/> )
+    function handleTeamCreate(newTeam) {
+        setFantasyTeams([...fantasyTeams, newTeam])
+    }
+
+    console.log("ALL TEAMS: ", fantasyTeams)
+
+    const renderTeams = fantasyTeams.map( team => <FantasyTeam key={uuid()} team={team}/> )
 
     return (
-        <div>
-              <h2>Fantasy Teams</h2>   
+        <div> 
+              <CreateFantasyTeam onTeamCreate={handleTeamCreate}/> 
+              <h2>Fantasy Teams</h2> 
               {renderTeams}
         </div>
     )

@@ -9,7 +9,7 @@ function Players() {
     useEffect(() => {
       fetch("http://localhost:9393/players/")
       .then(r => r.json())
-      .then( responseData => { setPlayers(responseData.players); console.log(responseData.players) }  )
+      .then( responseData => { setPlayers(responseData.players); console.log("PLAYERS: ", responseData.players) }  )
     //   .catch(err => {puts err});
     }, [])
     

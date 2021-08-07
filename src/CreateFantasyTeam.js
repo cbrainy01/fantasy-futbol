@@ -1,7 +1,7 @@
 import React from 'react'
 import {useEffect, useState} from 'react'
 
-function CreateFantasyTeam() {
+function CreateFantasyTeam({onTeamCreate}) {
     
     // const [newTeamInfo, setNewTeamInfo] = useState({teamName: "", ownerName: ""})
     const [newTeamInfo, setNewTeamInfo] = useState({name: "", owner: ""})
@@ -21,7 +21,16 @@ function CreateFantasyTeam() {
         .then(r => r.json())
         .then(
             responseData => {
-                console.log("RESPONSEDATA: ", responseData)
+                console.log("RESPONSEDATA: ", responseData, 
+                responseData.fantasy_team.name, 
+                responseData.fantasy_team.owner)
+                // pass in new team object
+                const newTeam = {
+                    id: responseData.fantasy_team.id, 
+                    name: responseData.fantasy_team.name,
+                    owner: responseData.fantasy_team.owner
+                }
+                onTeamCreate(newTeam)
                 setNewTeamInfo("")
             }
         )
@@ -32,6 +41,7 @@ function CreateFantasyTeam() {
 
     function handleChange(e) {
         setNewTeamInfo( {...newTeamInfo, [e.target.name]: e.target.value} )
+        
     }
     console.log("NEWTEAMINFO", newTeamInfo)
     
