@@ -7,7 +7,8 @@ import {v4 as uuid} from "uuid"
 function Players() {
     
     const [players, setPlayers] = useState([])
-    const [slot1Player, setSlot1Player] = useState("")
+    const [slot1Player, setSlot1Player] = useState("none selected")
+    const [slot2Player, setSlot2Player] = useState("none selected")
   
     useEffect(() => {
       fetch("http://localhost:9393/players/")
@@ -24,20 +25,45 @@ function Players() {
         } )
        return renderPlayers
     }
+    function optionDropdown2() {
+
+        const renderPlayers = players.map( (player)=>{
+            return <option key={uuid()} value={player.id}>{player.name}</option>
+        } )
+       return renderPlayers
+    }
 
     function handleSlot1Change(event) {
-        console.log("selected player's id: ", event.target.value)
+
         const playerObj = players.find( (player) => player.id == event.target.value )
-        console.log("Player object: ", playerObj)
         setSlot1Player(playerObj)
+
+        console.log("Player object: ", playerObj)
+        console.log("selected player's id: ", event.target.value)
+    }
+    function handleSlot2Change(event) {
+
+        const playerObj = players.find( (player) => player.id == event.target.value )
+        setSlot2Player(playerObj)
+        
+        console.log("Player object: ", playerObj)
+        console.log("selected player's id: ", event.target.value)
     }
 
     function renderSlot1() {
-        if(slot1Player === "select player") {
-            return "No player Selected"
+        if(slot1Player === "none selected") {
+            return <div>No Player Selected</div>
         }
         else {
             return <Player key={uuid()} player={slot1Player}/>
+        }
+    }
+    function renderSlot2() {
+        if(slot2Player === "none selected") {
+            return <div>No player selected</div>
+        }
+        else {
+            return <Player key={uuid()} player={slot2Player}/>
         }
     }
 
@@ -48,15 +74,23 @@ function Players() {
     
     return (
         <div>
+            
             <h2>Players</h2>
+
+            <h3>Slot 1</h3>
             <select onChange={handleSlot1Change}>
-                <option value={"select player"}>select player</option>
+                <option value={"none selected"}>select player</option>
                 {optionDropdown1()}
             </select>
+            <div>{renderSlot1()}</div>
 
-            {/* {renderPlayers} */}
-            <div>Slot 1: {renderSlot1()}</div>
-            {/* <div>{renderSlot2}</div> */}
+            <h3>Slot 2</h3>
+            <select onChange={handleSlot2Change}>
+                <option value={"none selected"}>select player</option>
+                {optionDropdown2()}
+            </select>
+            <div>{renderSlot2()}</div>
+
         </div>
     )
 }
