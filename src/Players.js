@@ -10,7 +10,6 @@ function Players() {
       fetch("http://localhost:9393/players/")
       .then(r => r.json())
       .then( responseData => { setPlayers(responseData.players); console.log("PLAYERS: ", responseData.players) }  )
-    //   .catch(err => {puts err});
     }, [])
     
     const renderPlayers = players.map( player => <Player key={player.id} player={player}/> )
