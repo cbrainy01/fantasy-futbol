@@ -31,17 +31,30 @@ function FantasyTeams() {
         setSelectedTeam(teamObj)
     }
 
+
     function renderSelectedTeam() {
         if(selectedTeam == "none selected") {
             return <p>no team selected</p>
         }
         else {
-            return <FantasyTeam team={selectedTeam}/>
+            return <FantasyTeam onTeamDelete={handleTeamDelete} team={selectedTeam}/>
         }
     }
 
+    function handleTeamDelete(deleteId) {
+        fetch( `http://localhost:9393/fantasy_teams/${deleteId}`, {method: "DELETE"} )
+       
+        .then( () => {
+            const newTeams = fantasyTeams.filter( team => team.id != deleteId )
+            setFantasyTeams(newTeams)
+            setSelectedTeam("none selected")
+        }
+        )
 
-    const renderTeams = fantasyTeams.map( team => <FantasyTeam key={uuid()} team={team}/> )
+    }
+
+
+    // const renderTeams = fantasyTeams.map( team => <FantasyTeam key={uuid()} team={team}/> )
 
     return (
         <div> 

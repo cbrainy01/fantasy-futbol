@@ -29,6 +29,7 @@ function CreateFantasyTeam({onTeamCreate}) {
                     id: responseData.fantasy_team.id, 
                     name: responseData.fantasy_team.name,
                     owner: responseData.fantasy_team.owner
+                    // where teams players will be handled.
                 }
                 onTeamCreate(newTeam)
                 setNewTeamInfo("")
