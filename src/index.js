@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from "./components/App"
+import { FantasyTeamsProvider } from "./context/fantasyTeams"
 
 ReactDOM.render(
+  
   <React.StrictMode>
-    <App />
+    <FantasyTeamsProvider>
+      <App />
+    </FantasyTeamsProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,6 +1,6 @@
 import Players from './Players';
+// import FantasyTeams from './FantasyTeams';
 import FantasyTeams from './FantasyTeams';
-
 function App() {
 
 
