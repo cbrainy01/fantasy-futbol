@@ -1,15 +1,16 @@
 import React from 'react'
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useContext} from 'react'
 import Player from './Player'
 import {v4 as uuid} from "uuid"
-
+import { FantasyTeamsContext } from "../context/fantasyTeams"
 
 function Players() {
     
     const [players, setPlayers] = useState([])
     const [slot1Player, setSlot1Player] = useState("none selected")
     const [slot2Player, setSlot2Player] = useState("none selected")
-  
+    const [fantasyTeams, setFantasyTeams] = useContext(FantasyTeamsContext)
+
     useEffect(() => {
       fetch("http://localhost:9393/players/")
       .then(r => r.json())
