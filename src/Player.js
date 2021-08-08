@@ -11,6 +11,7 @@ function Player({player}) {
     return (
         <div>
             <h3>{player.name}</h3>
+            <img src={player.image} alt={`image of ${player.name}`}/>
             <p>position: {player.position}</p>
             <p>Fantasy team: {player.fantasy_team == null? "no team": "insert team"}</p>
             <p>Goals: {player.goals}</p>
