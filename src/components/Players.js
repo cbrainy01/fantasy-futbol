@@ -56,7 +56,7 @@ function Players() {
             return <div>No Player Selected</div>
         }
         else {
-            return <Player key={uuid()} player={slot1Player}/>
+            return <Player key={uuid()} player={slot1Player} fantasyTeams={fantasyTeams}/>
         }
     }
     function renderSlot2() {
@@ -64,10 +64,9 @@ function Players() {
             return <div>No player selected</div>
         }
         else {
-            return <Player key={uuid()} player={slot2Player}/>
+            return <Player key={uuid()} player={slot2Player} fantasyTeams={fantasyTeams}/>
         }
     }
-
 
 
 
