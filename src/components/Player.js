@@ -2,9 +2,10 @@ import React from 'react'
 import {useState} from 'react'
 import {v4 as uuid} from "uuid"
 
-function Player({comparisonResults, player, fantasyTeams}) {
+function Player({comparisonResults, player, fantasyTeams, onTeamAssign}) {
 
     const [selectedTeamId, setSelectedTeamId] = useState("none selected")
+    
     const rosterLength = fantasyTeams.find( (team) => team.id == player.fantasy_team.id ).roster.length
     console.log("Team roster length: ", rosterLength)
 
@@ -42,17 +43,17 @@ function Player({comparisonResults, player, fantasyTeams}) {
     function handleSubmit(e) {
         e.preventDefault()
         const playerStatus = player.status
-        // create variable for number of players on selected team
 
         if(player.fantasy_team != null ) {
             alert("Player is already part of a team")
         }
-        // elsif(selected teams number of players on selected team has exceeded the limit ) {
-        //     alert("Roster is full")
-        // }
-        // else {
-        //     send id up for patch to be made
-        // }
+        else if(rosterLength < 10 ) {
+            alert("Roster is full")
+        }
+        else {
+            // send id up for patch to be made
+                onTeamAssign(player.id, selectedTeamId)
+        }
 
         // send id of selected up to make patch request. BuT fIrsT
         // Find out of player status is "signed" or fantasy_team isnt nil

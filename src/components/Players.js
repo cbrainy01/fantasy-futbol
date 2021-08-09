@@ -89,7 +89,7 @@ function Players() {
             return <div>No Player Selected</div>
         }
         else {
-            return <Player key={uuid()} comparisonResults={compareStats()[0]} player={slot1Player} fantasyTeams={fantasyTeams}/>
+            return <Player key={uuid()} comparisonResults={compareStats()[0]} player={slot1Player} fantasyTeams={fantasyTeams} onTeamAssign={handleTeamAssign}/>
         }
     }
     function renderSlot2() {
@@ -97,8 +97,12 @@ function Players() {
             return <div>No player selected</div>
         }
         else {
-            return <Player key={uuid()} comparisonResults={compareStats()[1]} player={slot2Player} fantasyTeams={fantasyTeams}/>
+            return <Player key={uuid()} comparisonResults={compareStats()[1]} player={slot2Player} fantasyTeams={fantasyTeams} onTeamAssign={handleTeamAssign}/>
         }
+    }
+
+    function handleTeamAssign(playerId, teamId) {
+
     }
 
 
