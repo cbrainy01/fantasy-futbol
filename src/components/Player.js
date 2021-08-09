@@ -5,7 +5,9 @@ import {v4 as uuid} from "uuid"
 function Player({comparisonResults, player, fantasyTeams}) {
 
     const [selectedTeamId, setSelectedTeamId] = useState("none selected")
-    
+    const rosterLength = fantasyTeams.find( (team) => team.id == player.fantasy_team.id ).roster.length
+    console.log("Team roster length: ", rosterLength)
+
     function goalComparison() {
         if(comparisonResults.goals == "win") {return "limegreen"}
         else if(comparisonResults.goals == "lose") {return "red"}
