@@ -42,7 +42,7 @@ function Player({comparisonResults, player, fantasyTeams}) {
         const playerStatus = player.status
         // create variable for number of players on selected team
 
-        if(playerStatus != "Free Agent" ) {
+        if(player.fantasy_team != null ) {
             alert("Player is already part of a team")
         }
         // elsif(selected teams number of players on selected team has exceeded the limit ) {
@@ -64,7 +64,7 @@ function Player({comparisonResults, player, fantasyTeams}) {
             <h3>{player.name}</h3>
             <img src={player.image} alt={`image of ${player.name}`}/>
             <p>position: {player.position}</p>
-            <p>Fantasy team: {player.fantasy_team == null? "no team": "insert team"}</p>
+            <p>Fantasy team: {player.fantasy_team == null? "no team": `${player.fantasy_team.name}` }</p>
             <p>Goals: </p><p style={{color: `${goalComparison()}` }}>{player.goals}</p>
             <p>Assists: </p><p style={{color: `${assistComparison()}`}}>{player.assists}</p>
             <p>Goal Involvements: </p><p style={{color: `${involvementComparison()}`}}>{player.goal_involvements}</p>
