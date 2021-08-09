@@ -2,7 +2,7 @@ import React from 'react'
 import {useState} from 'react'
 import {v4 as uuid} from "uuid"
 
-function Player({/*comparisonResults,*/ player, fantasyTeams}) {
+function Player({comparisonResults, player, fantasyTeams}) {
     
     const [selectedTeamId, setSelectedTeamId] = useState("none selected")
     
@@ -36,6 +36,7 @@ function Player({/*comparisonResults,*/ player, fantasyTeams}) {
         // then block that submit request with an alert
     }
     console.log("SELECTED TEAM Id IS: ", selectedTeamId)
+    console.log("COMPARISONRESULTS IS: ", comparisonResults)
     
     return (
         <div>

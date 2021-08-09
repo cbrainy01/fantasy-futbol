@@ -10,6 +10,8 @@ function Players() {
     const [slot1Player, setSlot1Player] = useState("none selected")
     const [slot2Player, setSlot2Player] = useState("none selected")
     const [fantasyTeams, setFantasyTeams] = useContext(FantasyTeamsContext)
+    const [p1Results, setP1Results] = useState("")
+    const [p2Results, setP2Results] = useState("")
 
     useEffect(() => {
       fetch("http://localhost:9393/players/")
@@ -19,17 +21,16 @@ function Players() {
 
     // should only run if both slot1 and slot2 players are not equal to "none selected". A do while perhaps?
     function compareStats() {
-        // console.log("Slot1 player: ", slot1Player, "Slot2 player: ", slot2Player)
         const player1Results = {}
         const player2Results = {}
 
         const keys = Object.keys(slot1Player)
-        console.log("keys BEFORE Filter: ", keys)
+        // console.log("keys BEFORE Filter: ", keys)
         const categories = keys.filter( (attribute) => {
-            // if(attribute == "id" || attribute == "name" || attribute == "image" || attribute == "position" || attribute == "league" || attribute == "status" || attribute == "fantasy_team") {return false}
             if(attribute != "id" && attribute != "name" && attribute != "image" && attribute != "position" && attribute != "league" && attribute != "status" && attribute != "fantasy_team" ) {return true}
         } )
-        console.log("CATEGORIES: ", categories)
+
+        // console.log("CATEGORIES: ", categories)
         categories.forEach( (category) => {
             if(slot1Player[category] > slot2Player[category]) {
                 player1Results[category] = "win"
@@ -44,26 +45,11 @@ function Players() {
                 player2Results[category] = "tie"
             }
         } )
-
-        // switch (slot1Player.goals > slot2Player.goals) {
-        //     case true:
-        //         player1Results.goals = "win"
-        //         player2Results.goals = "lose"
-        //         break;
-        //     case false:
-        //         if(slot1Player.goals == slot2Player.goals) {
-        //             player1Results.goals = "tie"
-        //             player2Results.goals = "tie"
-        //         } 
-        //         else {player1Results.goals = "lose"
-        //             player2Results.goals = "win"}   
-        //     break;
-        
-        //     default:
-        //         console.log("no can do")
-        //         break;
-        // }
+        // setP1Results(player1Results)
+        // setP2Results(player2Results)
         console.log("1: ", player1Results,"2: ", player2Results)
+        const outputArray = [player1Results, player2Results]
+        return outputArray
     }
 
     function optionDropdown1() {
@@ -103,7 +89,7 @@ function Players() {
             return <div>No Player Selected</div>
         }
         else {
-            return <Player key={uuid()} /*comparisonResults={}*/ player={slot1Player} fantasyTeams={fantasyTeams}/>
+            return <Player key={uuid()} comparisonResults={compareStats()[0]} player={slot1Player} fantasyTeams={fantasyTeams}/>
         }
     }
     function renderSlot2() {
@@ -111,7 +97,7 @@ function Players() {
             return <div>No player selected</div>
         }
         else {
-            return <Player key={uuid()} /*comparisonResults={}*/ player={slot2Player} fantasyTeams={fantasyTeams}/>
+            return <Player key={uuid()} comparisonResults={compareStats()[1]} player={slot2Player} fantasyTeams={fantasyTeams}/>
         }
     }
 
@@ -137,7 +123,7 @@ function Players() {
                 {optionDropdown2()}
             </select>
             <div>{renderSlot2()}</div>
-            {compareStats()}
+            {/* {compareStats()} */}
 
         </div>
     )
