@@ -2,9 +2,9 @@ import React from 'react'
 import {useState} from 'react'
 import {v4 as uuid} from "uuid"
 
-function Player({player, fantasyTeams}) {
+function Player({/*comparisonResults,*/ player, fantasyTeams}) {
     
-    const [selectedTeam, setSelectedTeam] = useState("")
+    const [selectedTeamId, setSelectedTeamId] = useState("none selected")
     
     function optionDropdown() {
         return fantasyTeams.map( (team) => {
@@ -13,9 +13,29 @@ function Player({player, fantasyTeams}) {
     }
 
     function handleTeamSelect(e) {
-        setSelectedTeam(e.target.value)
+        setSelectedTeamId(e.target.value)
     }
-    console.log("SELECTED TEAM IS: ", selectedTeam)
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        const playerStatus = player.status
+        // create variable for number of players on selected team
+
+        if(playerStatus != "Free Agent" ) {
+            alert("Player is already part of a team")
+        }
+        // elsif(selected teams number of players on selected team has exceeded the limit ) {
+        //     alert("Roster is full")
+        // }
+        // else {
+        //     send id up for patch to be made
+        // }
+
+        // send id of selected up to make patch request. BuT fIrsT
+        // Find out of player status is "signed" or fantasy_team isnt nil
+        // then block that submit request with an alert
+    }
+    console.log("SELECTED TEAM Id IS: ", selectedTeamId)
     
     return (
         <div>
@@ -27,12 +47,14 @@ function Player({player, fantasyTeams}) {
             <p>Assists: {player.assists}</p>
             <p>Goal Involvements: {player.goal_involvements}</p>
             <p>Saves: {player.saves}</p>
-            {/* select fantasy team to add to */}
-            <select onChange={handleTeamSelect}>
-                <option>select team</option>
-                {optionDropdown()}
-            </select>
-            {/* add to team button */}
+
+            <form onSubmit={handleSubmit}>
+                <select onChange={handleTeamSelect}>
+                    <option>select team</option>
+                    {optionDropdown()}
+                </select>
+                <button>add to team</button>
+            </form>
         </div>
     )
 }
