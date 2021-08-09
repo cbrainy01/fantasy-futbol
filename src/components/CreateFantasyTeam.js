@@ -10,6 +10,12 @@ function CreateFantasyTeam({onTeamCreate}) {
     
     function handleSubmit(e) {
         e.preventDefault();
+
+        if(newTeamInfo.name.length == 0 || newTeamInfo.owner.length == 0) {
+            alert("please fill out both fields")
+        }
+
+        else {
         fetch("http://localhost:9393/fantasy_teams/", {
             method: "POST",
             headers: {
@@ -35,7 +41,7 @@ function CreateFantasyTeam({onTeamCreate}) {
                 setNewTeamInfo("")
             }
         )
-        
+        }
     }    
     
   

@@ -65,10 +65,10 @@ function Player({comparisonResults, player, fantasyTeams}) {
             <img src={player.image} alt={`image of ${player.name}`}/>
             <p>position: {player.position}</p>
             <p>Fantasy team: {player.fantasy_team == null? "no team": "insert team"}</p>
-            <p style={{color: `${goalComparison()}` }}>Goals: {player.goals}</p>
-            <p style={{color: `${assistComparison()}`}}>Assists: {player.assists}</p>
-            <p style={{color: `${involvementComparison()}`}}>Goal Involvements: {player.goal_involvements}</p>
-            <p style={{color: `${saveComparison()}`}}>Saves: {player.saves}</p>
+            <p>Goals: </p><p style={{color: `${goalComparison()}` }}>{player.goals}</p>
+            <p>Assists: </p><p style={{color: `${assistComparison()}`}}>{player.assists}</p>
+            <p>Goal Involvements: </p><p style={{color: `${involvementComparison()}`}}>{player.goal_involvements}</p>
+            <p>Saves: </p><p style={{color: `${saveComparison()}`}}>{player.saves}</p>
 
             <form onSubmit={handleSubmit}>
                 <select onChange={handleTeamSelect}>
