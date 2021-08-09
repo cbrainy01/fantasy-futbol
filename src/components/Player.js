@@ -3,7 +3,7 @@ import {useState} from 'react'
 import {v4 as uuid} from "uuid"
 
 function Player({comparisonResults, player, fantasyTeams}) {
-    
+
     const [selectedTeamId, setSelectedTeamId] = useState("none selected")
     
     function goalComparison() {
