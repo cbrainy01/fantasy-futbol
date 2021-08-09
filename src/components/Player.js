@@ -6,6 +6,27 @@ function Player({comparisonResults, player, fantasyTeams}) {
     
     const [selectedTeamId, setSelectedTeamId] = useState("none selected")
     
+    function goalComparison() {
+        if(comparisonResults.goals == "win") {return "limegreen"}
+        else if(comparisonResults.goals == "lose") {return "red"}
+        else {return "black"}
+    }
+    function assistComparison() {
+        if(comparisonResults.assists == "win") {return "limegreen"}
+        else if(comparisonResults.assists == "lose") {return "red"}
+        else {return "black"}
+    }
+    function involvementComparison() {
+        if(comparisonResults.goal_involvements == "win") {return "limegreen"}
+        else if(comparisonResults.goal_involvements == "lose") {return "red"}
+        else {return "black"}
+    }
+    function saveComparison() {
+        if(comparisonResults.saves == "win") {return "limegreen"}
+        else if(comparisonResults.saves == "lose") {return "red"}
+        else {return "black"}
+    }
+
     function optionDropdown() {
         return fantasyTeams.map( (team) => {
             return <option key={uuid()} value={team.id}>{team.name}</option>
@@ -44,10 +65,10 @@ function Player({comparisonResults, player, fantasyTeams}) {
             <img src={player.image} alt={`image of ${player.name}`}/>
             <p>position: {player.position}</p>
             <p>Fantasy team: {player.fantasy_team == null? "no team": "insert team"}</p>
-            <p>Goals: {player.goals}</p>
-            <p>Assists: {player.assists}</p>
-            <p>Goal Involvements: {player.goal_involvements}</p>
-            <p>Saves: {player.saves}</p>
+            <p style={{color: `${goalComparison()}` }}>Goals: {player.goals}</p>
+            <p style={{color: `${assistComparison()}`}}>Assists: {player.assists}</p>
+            <p style={{color: `${involvementComparison()}`}}>Goal Involvements: {player.goal_involvements}</p>
+            <p style={{color: `${saveComparison()}`}}>Saves: {player.saves}</p>
 
             <form onSubmit={handleSubmit}>
                 <select onChange={handleTeamSelect}>
