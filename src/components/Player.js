@@ -6,8 +6,6 @@ function Player({comparisonResults, player, fantasyTeams, onTeamAssign}) {
 
     const [selectedTeamId, setSelectedTeamId] = useState("none selected")
     
-    const rosterLength = fantasyTeams.find( (team) => team.id == player.fantasy_team.id ).roster.length
-    console.log("Team roster length: ", rosterLength)
 
     function goalComparison() {
         if(comparisonResults.goals == "win") {return "limegreen"}
@@ -36,18 +34,19 @@ function Player({comparisonResults, player, fantasyTeams, onTeamAssign}) {
         } )
     }
 
-    function handleTeamSelect(e) {
+    function handleChange(e) {
         setSelectedTeamId(e.target.value)
     }
 
     function handleSubmit(e) {
         e.preventDefault()
         const playerStatus = player.status
+        const rosterLength = fantasyTeams.find( (team) => team.id == selectedTeamId ).roster.length
 
         if(player.fantasy_team != null ) {
             alert("Player is already part of a team")
         }
-        else if(rosterLength < 10 ) {
+        else if(rosterLength > 10 ) {
             alert("Roster is full")
         }
         else {
@@ -74,7 +73,7 @@ function Player({comparisonResults, player, fantasyTeams, onTeamAssign}) {
             <p>Saves: </p><p style={{color: `${saveComparison()}`}}>{player.saves}</p>
 
             <form onSubmit={handleSubmit}>
-                <select onChange={handleTeamSelect}>
+                <select onChange={handleChange}>
                     <option>select team</option>
                     {optionDropdown()}
                 </select>

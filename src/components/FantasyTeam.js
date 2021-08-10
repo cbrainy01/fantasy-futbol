@@ -16,14 +16,16 @@ function FantasyTeam({onTeamDelete, team}) {
 
     return (
         <div>
-            <p>Team name: {team.name}</p>
+            <h2>{team.name}</h2>
             <p>Team owner: {team.owner}</p>
+            <button value={team.id} onClick={handleClick}>Delete Team</button>
+            <h4>Roster</h4>
             <div>{renderRoster}</div>
             {/* eventually render players on team as well. Probably requires a Component for each RosterMember*/}
             {/* roster member would have a remove from team button which would lead to a patch request 
             changing player status from "signed" to "Free agent" while also removing that player from given roster */}
 
-            <button value={team.id} onClick={handleClick}>Delete Team</button>
+            
         </div>
     )
 }

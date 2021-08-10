@@ -102,7 +102,18 @@ function Players() {
     }
 
     function handleTeamAssign(playerId, teamId) {
-
+        fetch(`http://localhost:9393/players/${playerId}`,
+        {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"},
+            // push 
+            body: JSON.stringify({"fantasy_team_id": teamId, "status": "signed"})
+        })
+        .then( (r)=>r.json() )
+        .then( (rData) => {
+            console.log(rData)
+        } )
+        console.log(playerId, teamId)
     }
 
 
