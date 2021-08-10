@@ -71,14 +71,15 @@ function Player({comparisonResults, player, fantasyTeams, onTeamAssign}) {
             <p>Assists: </p><p style={{color: `${assistComparison()}`}}>{player.assists}</p>
             <p>Goal Involvements: </p><p style={{color: `${involvementComparison()}`}}>{player.goal_involvements}</p>
             <p>Saves: </p><p style={{color: `${saveComparison()}`}}>{player.saves}</p>
-
-            <form onSubmit={handleSubmit}>
-                <select onChange={handleChange}>
-                    <option>select team</option>
+            <select onChange={handleChange}>
+                    <option value="none selected">select team</option>
                     {optionDropdown()}
-                </select>
+            </select>
+            <form onSubmit={handleSubmit}>
+                
                 <button>add to team</button>
             </form>
+            
         </div>
     )
 }

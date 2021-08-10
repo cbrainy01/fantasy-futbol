@@ -10,8 +10,8 @@ function Players() {
     const [slot1Player, setSlot1Player] = useState("none selected")
     const [slot2Player, setSlot2Player] = useState("none selected")
     const [fantasyTeams, setFantasyTeams] = useContext(FantasyTeamsContext)
-    const [p1Results, setP1Results] = useState("")
-    const [p2Results, setP2Results] = useState("")
+    // const [p1Results, setP1Results] = useState("")
+    // const [p2Results, setP2Results] = useState("")
 
     useEffect(() => {
       fetch("http://localhost:9393/players/")
@@ -51,6 +51,7 @@ function Players() {
         const outputArray = [player1Results, player2Results]
         return outputArray
     }
+    console.log("SLot1 Player: ", slot1Player)
 
     function optionDropdown1() {
 
@@ -89,7 +90,8 @@ function Players() {
             return <div>No Player Selected</div>
         }
         else {
-            return <Player key={uuid()} comparisonResults={compareStats()[0]} player={slot1Player} fantasyTeams={fantasyTeams} onTeamAssign={handleTeamAssign}/>
+            const selectPlayer = players.find( (player) => player.id === slot1Player.id )
+            return <Player key={uuid()} comparisonResults={compareStats()[0]} player={selectPlayer} fantasyTeams={fantasyTeams} onTeamAssign={handleTeamAssign}/>
         }
     }
     function renderSlot2() {
@@ -97,7 +99,8 @@ function Players() {
             return <div>No player selected</div>
         }
         else {
-            return <Player key={uuid()} comparisonResults={compareStats()[1]} player={slot2Player} fantasyTeams={fantasyTeams} onTeamAssign={handleTeamAssign}/>
+            const selectPlayer = players.find( (player) => player.id === slot2Player.id )
+            return <Player key={uuid()} comparisonResults={compareStats()[1]} player={selectPlayer} fantasyTeams={fantasyTeams} onTeamAssign={handleTeamAssign}/>
         }
     }
 
@@ -111,12 +114,14 @@ function Players() {
         })
         .then( (r)=>r.json() )
         .then( (rData) => {
-            console.log(rData)
+            const respIndex = players.findIndex( player => player.id === rData.player.id )
+            const beforePlayerArray = players.slice(0, respIndex)
+            const afterPlayerArray = players.slice(0, respIndex + 1)
+            setPlayers([...beforePlayerArray, rData.player, ...afterPlayerArray])
         } )
-        console.log(playerId, teamId)
     }
 
-
+    console.log("PLAYERS after patch: ", players)
 
     // const renderPlayers = players.map( player => <Player key={player.id} player={player}/> )
     
