@@ -29,9 +29,9 @@ function FantasyTeams() {
     }
 
     function handleTeamSelect(e) {
-        const teamObj = fantasyTeams.find( (team) => team.id == e.target.value )
-        setSelectedTeam(teamObj)
+        setSelectedTeam(e.target.value)
     }
+    console.log("SELECTED TEAM: ", selectedTeam)
 
     function handleRelease(playerId, teamId) {
         fetch(`http://localhost:9393/fantasy_teams/${teamId}`,
@@ -52,7 +52,8 @@ function FantasyTeams() {
             return <p>no team selected</p>
         }
         else {
-            return <FantasyTeam onTeamDelete={handleTeamDelete} onRelease={handleRelease} team={selectedTeam}/>
+        const teamObj = fantasyTeams.find( (team) => team.id == selectedTeam )
+            return <FantasyTeam onTeamDelete={handleTeamDelete} onRelease={handleRelease} team={teamObj}/>
         }
     }
 
@@ -75,8 +76,8 @@ function FantasyTeams() {
         <div> 
               <CreateFantasyTeam onTeamCreate={handleTeamCreate}/> 
               <h2>Fantasy Teams</h2> 
-              <select onChange={handleTeamSelect}>
-                  <option>select team</option>
+              <select  onChange={handleTeamSelect} value={selectedTeam}>
+                  <option value="none selected">select team</option>
                   {optionDropdown()}
               </select>
               {renderSelectedTeam()}

@@ -1,0 +1,42 @@
+.player {
+   
+}
+
+.player h3 {
+font-size: 1.5em;
+margin-left: 2em;
+}
+
+.player p {
+font-style: bold;
+font-size: 1em;
+} 
+
+.player .stat {
+    color: yellow
+}
+
+.player button {
+/* width: 300px; */
+/* height: 100px; */
+margin-top: 1em;
+margin-left: 6em;
+border: none;
+border-radius: 4px;
+translate: ease-out 0.3s;
+font-size: 1.1em;
+outline: none;
+border: 3px solid rgb(223, 221, 217);
+position: relative;
+z-index: 1;
+}
+
+.player select {
+    margin-left: 7.5em;
+    padding: 8px 12px;
+    color: black;
+    background-color: rgb(223, 221, 217);
+    border: 1px solid black;
+    cursor: pointer;
+    border-radius: 5px;
+}

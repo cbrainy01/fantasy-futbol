@@ -1,6 +1,7 @@
 import React from 'react'
 import {useState} from 'react'
 import {v4 as uuid} from "uuid"
+import "../styling/player.css"
 
 function Player({comparisonResults, player, fantasyTeams, onTeamAssign}) {
 
@@ -42,14 +43,14 @@ function Player({comparisonResults, player, fantasyTeams, onTeamAssign}) {
     function handleSubmit(e) {
         e.preventDefault()
         console.log("steammyid: ", selectedTeamId)
-        const rosterLength = fantasyTeams.find( (team) => team.id == selectedTeamId ).roster.length
+        // const rosterLength = fantasyTeams.find( (team) => team.id == selectedTeamId ).roster.length
         if(selectedTeamId === "none selected") {
             alert("Please select a team")
         }
         else if(player.fantasy_team != null ) {
             alert("Player is already part of a team")
         }
-        else if(rosterLength > 10 ) {
+        else if( fantasyTeams.find( (team) => team.id == selectedTeamId ).roster.length > 10 ) {
             alert("Roster is full")
         }
         
@@ -66,7 +67,7 @@ function Player({comparisonResults, player, fantasyTeams, onTeamAssign}) {
     console.log("COMPARISONRESULTS IS: ", comparisonResults)
     
     return (
-        <div>
+        <div className={"player"}>
             <h3>{player.name}</h3>
             <img src={player.image} alt={`image of ${player.name}`}/>
             <p>position: {player.position}</p>
@@ -75,7 +76,7 @@ function Player({comparisonResults, player, fantasyTeams, onTeamAssign}) {
             <p>Assists: </p><p style={{color: `${assistComparison()}`}}>{player.assists}</p>
             <p>Goal Involvements: </p><p style={{color: `${involvementComparison()}`}}>{player.goal_involvements}</p>
             <p>Saves: </p><p style={{color: `${saveComparison()}`}}>{player.saves}</p>
-            <select onChange={handleChange}>
+            <select onChange={handleChange} value={selectedTeamId}>
                     <option value="none selected">select team</option>
                     {optionDropdown()}
             </select>

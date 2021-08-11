@@ -34,11 +34,11 @@ function CreateFantasyTeam({onTeamCreate}) {
                 const newTeam = {
                     id: responseData.fantasy_team.id, 
                     name: responseData.fantasy_team.name,
-                    owner: responseData.fantasy_team.owner
+                    owner: responseData.fantasy_team.owner,
                     // where teams players will be handled.
                 }
                 onTeamCreate(newTeam)
-                setNewTeamInfo("")
+                // setNewTeamInfo("")
             }
         )
         }

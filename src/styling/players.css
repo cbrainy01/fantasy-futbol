@@ -2,5 +2,30 @@
     margin: 5rem auto;
     width: min(90%, 75rem);
     display: grid;
-    grid-template-columns: 45% 45%;
+    grid-template-columns: 49% 49%;
 }
+
+.dropdown {
+    padding: 8px 12px;
+    color: black;
+    background-color: rgb(223, 221, 217);
+    border: 1px solid black;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.dropdown:focus, .dropdown:hover {
+    outline: none;
+    border: 1px solid white;
+}
+
+.header {
+    text-align: center;
+    /* margin-top: 3em; */
+    position: relative;
+    font-size: 2em;
+    margin-right: 40%;
+}
+
+/* .player-card {
+
+} */
