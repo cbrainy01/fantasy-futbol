@@ -12,8 +12,8 @@ function FantasyTeam({onTeamDelete, onRelease, team}) {
     }
     console.log("TEAM : ", team)
     console.log("TEAM KEYS : ", Object.keys(team) )
-    console.log("Roster length : ", team.roster.length)
-    console.log("ROSTER: ", team.roster)
+    // console.log("Roster length : ", team.roster.length)
+    // console.log("ROSTER: ", team.roster)
     
     function renderRoster() {
    

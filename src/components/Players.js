@@ -117,8 +117,15 @@ function Players() {
         .then( (rData) => {
             const respIndex = players.findIndex( player => player.id === rData.player.id )
             const beforePlayerArray = players.slice(0, respIndex)
-            const afterPlayerArray = players.slice(0, respIndex + 1)
+            const afterPlayerArray = players.slice(respIndex + 1)
             setPlayers([...beforePlayerArray, rData.player, ...afterPlayerArray])
+            const rIndexTeam = fantasyTeams.findIndex( team => team.id === rData.player.fantasy_team.id)
+            const beforeTeamArray = fantasyTeams.slice(0, rIndexTeam)
+            const afterTeamArray = fantasyTeams.slice(rIndexTeam + 1)
+            // const teamWithNewPlayer = fantasyTeams[rIndexTeam].roster.concat(rData.player);
+            // debugger
+            setFantasyTeams([...beforeTeamArray, { ...fantasyTeams[rIndexTeam], roster: [...fantasyTeams[rIndexTeam].roster, rData.player] }, ...afterTeamArray])
+            
         } )
     }
 
