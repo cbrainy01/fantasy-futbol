@@ -37,18 +37,22 @@ function Player({comparisonResults, player, fantasyTeams, onTeamAssign}) {
     function handleChange(e) {
         setSelectedTeamId(e.target.value)
     }
+    console.log("steamiddd: ", selectedTeamId.length)
 
     function handleSubmit(e) {
         e.preventDefault()
-        const playerStatus = player.status
+        console.log("steammyid: ", selectedTeamId)
         const rosterLength = fantasyTeams.find( (team) => team.id == selectedTeamId ).roster.length
-
-        if(player.fantasy_team != null ) {
+        if(selectedTeamId === "none selected") {
+            alert("Please select a team")
+        }
+        else if(player.fantasy_team != null ) {
             alert("Player is already part of a team")
         }
         else if(rosterLength > 10 ) {
             alert("Roster is full")
         }
+        
         else {
             // send id up for patch to be made
                 onTeamAssign(player.id, selectedTeamId)

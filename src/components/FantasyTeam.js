@@ -2,8 +2,8 @@ import React from 'react'
 import RosterPlayer from './RosterPlayer'
 import {v4 as uuid} from "uuid"
 
-function FantasyTeam({onTeamDelete, team}) {
-    
+function FantasyTeam({onTeamDelete, onRelease, team}) {
+
     function handleClick(event) {
         // create delete request
         const idOfTeamToDelete = event.target.value
@@ -12,7 +12,7 @@ function FantasyTeam({onTeamDelete, team}) {
     }
     console.log("TEAM ROster: ", team.roster)
 
-    const renderRoster = team.roster.map( (player) => <RosterPlayer key={uuid()} player={player}/> )
+    const renderRoster = team.roster.map( (player) => <RosterPlayer key={uuid()} onRelease={onRelease} player={player}/> )
 
     return (
         <div>

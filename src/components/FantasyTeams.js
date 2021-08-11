@@ -33,13 +33,26 @@ function FantasyTeams() {
         setSelectedTeam(teamObj)
     }
 
+    function handleRelease(playerId, teamId) {
+        fetch(`http://localhost:9393/fantasy_teams/${teamId}`,
+        {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ })
+        } )
+        .then( (r)=>r.json() )
+        .then( (rData) => {
+            console.log(rData)
+        } )
+    }
+
 
     function renderSelectedTeam() {
         if(selectedTeam == "none selected") {
             return <p>no team selected</p>
         }
         else {
-            return <FantasyTeam onTeamDelete={handleTeamDelete} team={selectedTeam}/>
+            return <FantasyTeam onTeamDelete={handleTeamDelete} onRelease={handleRelease} team={selectedTeam}/>
         }
     }
 
