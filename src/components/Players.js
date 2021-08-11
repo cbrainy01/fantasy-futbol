@@ -3,6 +3,7 @@ import {useEffect, useState, useContext} from 'react'
 import Player from './Player'
 import {v4 as uuid} from "uuid"
 import { FantasyTeamsContext } from "../context/fantasyTeams"
+import "../styling/players.css"
 
 function Players() {
     
@@ -129,22 +130,25 @@ function Players() {
         <div>
             
             <h2>Players</h2>
-
-            <h3>Slot 1</h3>
-            <select onChange={handleSlot1Change}>
-                <option value={"none selected"}>select player</option>
-                {optionDropdown1()}
-            </select>
-            <div>{renderSlot1()}</div>
-
-            <h3>Slot 2</h3>
-            <select onChange={handleSlot2Change}>
-                <option value={"none selected"}>select player</option>
-                {optionDropdown2()}
-            </select>
-            <div>{renderSlot2()}</div>
-            {/* {compareStats()} */}
-
+           <div className={"player-comps"}>
+               <div>
+                    <h3>Slot 1</h3>
+                    <select onChange={handleSlot1Change}>
+                        <option value={"none selected"}>select player</option>
+                        {optionDropdown1()}
+                    </select>
+                    {renderSlot1()}
+                </div>
+                
+                <div>
+                    <h3>Slot 2</h3>
+                    <select onChange={handleSlot2Change}>
+                    <option value={"none selected"}>select player</option>
+                    {optionDropdown2()}
+                    </select>
+                    {renderSlot2()}
+                </div>
+          </div>
         </div>
     )
 }
