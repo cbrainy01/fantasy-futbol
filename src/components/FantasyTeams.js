@@ -34,14 +34,24 @@ function FantasyTeams() {
     console.log("SELECTED TEAM: ", selectedTeam)
 
     function handleRelease(playerId, teamId) {
-        fetch(`http://localhost:9393/fantasy_teams/${teamId}`,
+        fetch(`http://localhost:9393/players/${playerId}`,
         {
             method: "PATCH",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({ })
+            body: JSON.stringify({"fantasy_team_id": "nil" })
         } )
         .then( (r)=>r.json() )
         .then( (rData) => {
+            // adjust players accordingly. go to that particular player and change their status from signed to free agent, set thier team to null
+            // set fantasyTeams accordingly. go to the teams n remove that player from the roster.
+            const indexOfTeamToPatch = fantasyTeams.findIndex( team => team.id === teamId )
+            const beforePatchedTeam = fantasyTeams.slice(0, indexOfTeamToPatch)
+            const afterPatchedTeam = fantasyTeams.slice(indexOfTeamToPatch)
+            const patchedTeam = fantasyTeams.find( (team) => team.id === teamId )
+            // remove player from roster of team
+            const rosterWithoutPlayer = patchedTeam.roster.filter( (player) => player.id !== playerId )
+            patchedTeam.roster = rosterWithoutPlayer
+            setFantasyTeams([...beforePatchedTeam, patchedTeam, ...afterPatchedTeam])
             console.log(rData)
         } )
     }
@@ -60,12 +70,13 @@ function FantasyTeams() {
     function handleTeamDelete(deleteId) {
         fetch( `http://localhost:9393/fantasy_teams/${deleteId}`, {method: "DELETE"} )
        
-        .then( () => {
+        // .then( () => {
+            // debugger
             const newTeams = fantasyTeams.filter( team => team.id != deleteId )
             setFantasyTeams(newTeams)
             setSelectedTeam("none selected")
-        }
-        )
+        
+        // } )
 
     }
 
@@ -87,3 +98,4 @@ function FantasyTeams() {
 }
 
 export default FantasyTeams
+
