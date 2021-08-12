@@ -3,16 +3,15 @@ import {useEffect, useState, useContext} from 'react'
 import Player from './Player'
 import {v4 as uuid} from "uuid"
 import { FantasyTeamsContext } from "../context/fantasyTeams"
+import { PlayersContext } from "../context/players"
 import "../styling/players.css"
 
 function Players() {
     
-    const [players, setPlayers] = useState([])
+    const [players, setPlayers] = useContext(PlayersContext)
     const [slot1Player, setSlot1Player] = useState("none selected")
     const [slot2Player, setSlot2Player] = useState("none selected")
-    const [fantasyTeams, setFantasyTeams] = useContext(FantasyTeamsContext)
-    // const [p1Results, setP1Results] = useState("")
-    // const [p2Results, setP2Results] = useState("")
+    const [fantasyTeams, setFantasyTeams] = useContext(FantasyTeamsContext)    
 
     useEffect(() => {
       fetch("http://localhost:9393/players/")

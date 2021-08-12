@@ -4,12 +4,14 @@ import CreateFantasyTeam from './CreateFantasyTeam'
 import FantasyTeam from './FantasyTeam'
 import {v4 as uuid} from "uuid"
 import { FantasyTeamsContext } from "../context/fantasyTeams"
+import { PlayersContext } from "../context/players"
 
 function FantasyTeams() {
     
     // const [fantasyTeams, setFantasyTeams] = useState([])
     const [selectedTeam, setSelectedTeam] = useState("none selected")
     const [fantasyTeams, setFantasyTeams] = useContext(FantasyTeamsContext)
+    const [players, setPlayers] = useContext(PlayersContext)
 
     useEffect(() => {
         fetch("http://localhost:9393/fantasy_teams/")
@@ -43,6 +45,14 @@ function FantasyTeams() {
         .then( (r)=>r.json() )
         .then( (rData) => {
             // adjust players accordingly. go to that particular player and change their status from signed to free agent, set thier team to null
+            const indexOfPlayerToPatch = players.findIndex( (player) => player.id === playerId )
+            const beforePatchedPlayer = players.slice(0, indexOfPlayerToPatch)
+            const afterPatchedPlayer = players.slice(indexOfPlayerToPatch)
+            const patchedPlayer = players.find( (player) => player.id === playerId )
+            //adjust players attributes
+            patchedPlayer.fantasy_team = null
+            patchedPlayer.status = "Free agent"
+
             // set fantasyTeams accordingly. go to the teams n remove that player from the roster.
             const indexOfTeamToPatch = fantasyTeams.findIndex( team => team.id === teamId )
             const beforePatchedTeam = fantasyTeams.slice(0, indexOfTeamToPatch)

@@ -2,13 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from "./components/App"
 import { FantasyTeamsProvider } from "./context/fantasyTeams"
+import { PlayersProvider } from "./context/players"
 
 ReactDOM.render(
   
   <React.StrictMode>
+    <PlayersProvider>
     <FantasyTeamsProvider>
       <App />
     </FantasyTeamsProvider>
+    </PlayersProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
