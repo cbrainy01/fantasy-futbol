@@ -5,7 +5,7 @@ function RosterPlayer({player, onRelease}) {
     function handleSubmit(e) {
         e.preventDefault()
         console.log("submit made")
-        onRelease(player.id, player.fantasy_team_id)
+        onRelease(player.id, player.fantasy_team.id)
     }
     
     return (

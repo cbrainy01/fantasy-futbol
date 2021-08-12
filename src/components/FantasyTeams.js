@@ -56,7 +56,8 @@ function FantasyTeams() {
             // set fantasyTeams accordingly. go to the teams n remove that player from the roster.
             const indexOfTeamToPatch = fantasyTeams.findIndex( team => team.id === teamId )
             const beforePatchedTeam = fantasyTeams.slice(0, indexOfTeamToPatch)
-            const afterPatchedTeam = fantasyTeams.slice(indexOfTeamToPatch)
+            const afterPatchedTeam = fantasyTeams.slice(indexOfTeamToPatch + 1)
+            debugger
             const patchedTeam = fantasyTeams.find( (team) => team.id === teamId )
             // remove player from roster of team
             const rosterWithoutPlayer = patchedTeam.roster.filter( (player) => player.id !== playerId )

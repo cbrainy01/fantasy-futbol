@@ -38,11 +38,13 @@ function Player({comparisonResults, player, fantasyTeams, onTeamAssign}) {
     function handleChange(e) {
         setSelectedTeamId(e.target.value)
     }
-    console.log("steamiddd: ", selectedTeamId.length)
 
     function handleSubmit(e) {
         e.preventDefault()
         console.log("steammyid: ", selectedTeamId)
+        const team = fantasyTeams.find( (team) => team.id == selectedTeamId )
+        // const rosterLength = fantasyTeams.find( (team) => team.id == selectedTeamId ).roster.length
+        // debugger
         // const rosterLength = fantasyTeams.find( (team) => team.id == selectedTeamId ).roster.length
         if(selectedTeamId === "none selected") {
             alert("Please select a team")
@@ -50,7 +52,7 @@ function Player({comparisonResults, player, fantasyTeams, onTeamAssign}) {
         else if(player.fantasy_team != null ) {
             alert("Player is already part of a team")
         }
-        else if( fantasyTeams.find( (team) => team.id == selectedTeamId ).roster.length > 10 ) {
+        else if( team.roster_count > 10 ) {
             alert("Roster is full")
         }
         
@@ -65,17 +67,18 @@ function Player({comparisonResults, player, fantasyTeams, onTeamAssign}) {
     }
     console.log("SELECTED TEAM Id IS: ", selectedTeamId)
     console.log("COMPARISONRESULTS IS: ", comparisonResults)
-    
+    const style2 = {fontWeight: "900"}
+    const style3 = {fontSize: "1.25em"}
     return (
         <div className={"player"}>
             <h3>{player.name}</h3>
             <img src={player.image} alt={`image of ${player.name}`}/>
             <p>position: {player.position}</p>
             <p>Fantasy team: {player.fantasy_team == null? "no team": `${player.fantasy_team.name}` }</p>
-            <p>Goals: </p><p style={{color: `${goalComparison()}` }}>{player.goals}</p>
-            <p>Assists: </p><p style={{color: `${assistComparison()}`}}>{player.assists}</p>
-            <p>Goal Involvements: </p><p style={{color: `${involvementComparison()}`}}>{player.goal_involvements}</p>
-            <p>Saves: </p><p style={{color: `${saveComparison()}`}}>{player.saves}</p>
+            <p>Goals: </p><p style={{color: `${goalComparison()}`, ...style2, ...style3 }}>{player.goals}</p>
+            <p>Assists: </p><p style={{color: `${assistComparison()}`, ...style2, style3}}>{player.assists}</p>
+            <p>Goal Involvements: </p><p style={{color: `${involvementComparison()}`, ...style2, ...style3}}>{player.goal_involvements}</p>
+            <p>Saves: </p><p style={{color: `${saveComparison()}`, ...style2, ...style3}}>{player.saves}</p>
             <select onChange={handleChange} value={selectedTeamId}>
                     <option value="none selected">select team</option>
                     {optionDropdown()}
