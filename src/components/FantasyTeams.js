@@ -5,6 +5,7 @@ import FantasyTeam from './FantasyTeam'
 import {v4 as uuid} from "uuid"
 import { FantasyTeamsContext } from "../context/fantasyTeams"
 import { PlayersContext } from "../context/players"
+import RosterPlayer from './RosterPlayer'
 
 function FantasyTeams() {
     
@@ -54,15 +55,38 @@ function FantasyTeams() {
             patchedPlayer.status = "Free agent"
 
             // set fantasyTeams accordingly. go to the teams n remove that player from the roster.
-            const indexOfTeamToPatch = fantasyTeams.findIndex( team => team.id === teamId )
-            const beforePatchedTeam = fantasyTeams.slice(0, indexOfTeamToPatch)
-            const afterPatchedTeam = fantasyTeams.slice(indexOfTeamToPatch + 1)
-            debugger
-            const patchedTeam = fantasyTeams.find( (team) => team.id === teamId )
-            // remove player from roster of team
-            const rosterWithoutPlayer = patchedTeam.roster.filter( (player) => player.id !== playerId )
-            patchedTeam.roster = rosterWithoutPlayer
-            setFantasyTeams([...beforePatchedTeam, patchedTeam, ...afterPatchedTeam])
+            const updatedTeams = fantasyTeams.map( (team) => {
+                team.roster = team.roster.filter( (player) => player.id !== playerId )
+                team.roster_count = team.roster.length
+                return team
+            } )
+            // const updatedTeams = fantasyTeams.map( (team) => {
+            //     team.roster.map( (player) => {
+            //         if(player.id === playerId) {
+            //          return null;   
+            //         } else {return player}
+            //     })
+            //     return team
+            // } )
+            // const updatedTeams = fantasyTeams.map( (team) => {
+            //     team.roster.map( (team)=> )
+            //     if(team.roster)) {
+
+            //     }
+            //     else {return team}
+            // }  )
+                debugger
+            setFantasyTeams(updatedTeams)
+            // const indexOfTeamToPatch = fantasyTeams.findIndex( team => team.id === teamId )
+            // const beforePatchedTeam = fantasyTeams.slice(0, indexOfTeamToPatch)
+            // const afterPatchedTeam = fantasyTeams.slice(indexOfTeamToPatch + 1)
+            
+            // const patchedTeam = fantasyTeams.find( (team) => team.id === teamId )
+            // debugger
+            // // remove player from roster of team
+            // const rosterWithoutPlayer = patchedTeam.roster.filter( (player) => player.id !== playerId )
+            // patchedTeam.roster = rosterWithoutPlayer
+            // setFantasyTeams([...beforePatchedTeam, patchedTeam, ...afterPatchedTeam])
             console.log(rData)
         } )
     }
@@ -81,23 +105,34 @@ function FantasyTeams() {
     function handleTeamDelete(deleteId) {
         fetch( `http://localhost:9393/fantasy_teams/${deleteId}`, {method: "DELETE"} )
        
-        // .then( () => {
-            // debugger
             const newTeams = fantasyTeams.filter( team => team.id != deleteId )
             setFantasyTeams(newTeams)
             setSelectedTeam("none selected")
-        
-        // } )
-
+        // debugger
+      //with players variable, go find all players that were part of that team and set their fantasy team to null and status to free agent 
+        //   const playersToChange = players.filter( (player) => player.fantasy_team.id === deleteId )
+        const updatedPlayers = players.map( (player) => {
+            if(player.fantasy_team && player.fantasy_team.id === deleteId) {
+                debugger
+                player.fantasy_team = null
+                player.status = "Free Agent"
+                return player
+            }
+            else {
+                return player
+            }
+        })  
+        // debugger
+        setPlayers(updatedPlayers)
     }
 
 
     // const renderTeams = fantasyTeams.map( team => <FantasyTeam key={uuid()} team={team}/> )
 
     return (
-        <div> 
+        <div className={"fantasy-teams"}> 
               <CreateFantasyTeam onTeamCreate={handleTeamCreate}/> 
-              <h2>Fantasy Teams</h2> 
+              <h2> View Fantasy Teams</h2> 
               <select  onChange={handleTeamSelect} value={selectedTeam}>
                   <option value="none selected">select team</option>
                   {optionDropdown()}

@@ -1,6 +1,8 @@
 
-.app {background-image: url("https://img.freepik.com/free-photo/green-grass-field-background-soccer-football-sports_64749-1823.jpg?size=626&ext=jpg");}
+.app {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #3a98ce);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
 
-/* .app p {
-    color: white
-} */
+}
+

@@ -119,19 +119,14 @@ function Players() {
             const afterPlayerArray = players.slice(respIndex + 1)
             setPlayers([...beforePlayerArray, rData.player, ...afterPlayerArray])
 
-            // change fantasyTeams so they would include teams with that player added to teams roster
-            // const rIndexTeam = fantasyTeams.findIndex( team => team.id === rData.player.fantasy_team.id)
-            // change fantasyTeams so they would include teams with that player added to teams roster
-            // const teamToPatch = fantasyTeams.find( (team) => team.id === teamId )
-            // const beforeTeamArray = fantasyTeams.slice(0, rIndexTeam)
-            // const afterTeamArray = fantasyTeams.slice(rIndexTeam + 1)
             const parsedId = parseInt(teamId, 10)
             const teamToPatch = fantasyTeams.find( (team) => team.id === parsedId )
             const indexOfPatch = fantasyTeams.findIndex( (team) => team.id === teamToPatch.id)
-            // debugger
+            
             const before = fantasyTeams.slice(0, indexOfPatch)
             const after = fantasyTeams.slice(indexOfPatch + 1)
             teamToPatch.roster.push(rData.player)
+            teamToPatch.roster_count += 1;
             // const updatedRoster = teamToPatch.roster.concat(rData.player)
             const test = [...before, teamToPatch, ...after]
             debugger

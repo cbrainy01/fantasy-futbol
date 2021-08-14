@@ -72,7 +72,8 @@ function Player({comparisonResults, player, fantasyTeams, onTeamAssign}) {
     return (
         <div className={"player"}>
             <h3>{player.name}</h3>
-            <img src={player.image} alt={`image of ${player.name}`}/>
+            {/* hard code image size */}
+            <img src={player.image} alt={`image of ${player.name}`} width={"200"} height={"350"}/>
             <p>position: {player.position}</p>
             <p>Fantasy team: {player.fantasy_team == null? "no team": `${player.fantasy_team.name}` }</p>
             <p>Goals: </p><p style={{color: `${goalComparison()}`, ...style2, ...style3 }}>{player.goals}</p>

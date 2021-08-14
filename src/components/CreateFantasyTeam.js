@@ -35,6 +35,8 @@ function CreateFantasyTeam({onTeamCreate}) {
                     id: responseData.fantasy_team.id, 
                     name: responseData.fantasy_team.name,
                     owner: responseData.fantasy_team.owner,
+                    roster_count: 0,
+                    roster: []
                     // where teams players will be handled.
                 }
                 onTeamCreate(newTeam)
@@ -50,7 +52,7 @@ function CreateFantasyTeam({onTeamCreate}) {
         setNewTeamInfo( {...newTeamInfo, [e.target.name]: e.target.value} )
         
     }
-    console.log("NEWTEAMINFO", newTeamInfo)
+    // console.log("NEWTEAMINFO", newTeamInfo)
     
     return (
         <div>

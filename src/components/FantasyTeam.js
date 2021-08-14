@@ -16,11 +16,10 @@ function FantasyTeam({onTeamDelete, onRelease, team}) {
     // console.log("ROSTER: ", team.roster)
     
     function renderRoster() {
-   
-    if(Object.keys(team).includes("roster") && team.roster.length > 0) { return team.roster.map( (player) => <RosterPlayer key={uuid()} onRelease={onRelease} player={player}/> )}
+    if(Object.keys(team).includes("roster") && team.roster_count > 0) { return team.roster.map( (player) => <RosterPlayer key={uuid()} onRelease={onRelease} player={player}/> )}
         else {return <p>No players on roster</p>}
     }
-
+    debugger
     return (
         <div>
             <h2>{team.name}</h2>
