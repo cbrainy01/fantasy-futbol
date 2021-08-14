@@ -1,0 +1,8 @@
+.fantasy-teams .header{
+   text-align: center; 
+}
+
+.fantasy-teams select {
+    margin-left: 45%;
+    font-size: 1.2em;
+}

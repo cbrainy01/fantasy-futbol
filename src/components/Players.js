@@ -146,11 +146,11 @@ function Players() {
     return (
         <div>
             
-            <h2>Players</h2>
+            <h2 className={"players-header"}>Players</h2>
            <div className={"player-comps"}>
                <div>
                     <h3>Slot 1</h3>
-                    <select onChange={handleSlot1Change}>
+                    <select className={"dropdown"} onChange={handleSlot1Change}>
                         <option value={"none selected"}>select player</option>
                         {optionDropdown1()}
                     </select>
@@ -159,7 +159,7 @@ function Players() {
                 
                 <div>
                     <h3>Slot 2</h3>
-                    <select onChange={handleSlot2Change}>
+                    <select className={"dropdown"} onChange={handleSlot2Change}>
                     <option value={"none selected"}>select player</option>
                     {optionDropdown2()}
                     </select>

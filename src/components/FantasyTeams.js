@@ -6,6 +6,7 @@ import {v4 as uuid} from "uuid"
 import { FantasyTeamsContext } from "../context/fantasyTeams"
 import { PlayersContext } from "../context/players"
 import RosterPlayer from './RosterPlayer'
+import "../styling/fantasyTeams.css"
 
 function FantasyTeams() {
     
@@ -132,7 +133,7 @@ function FantasyTeams() {
     return (
         <div className={"fantasy-teams"}> 
               <CreateFantasyTeam onTeamCreate={handleTeamCreate}/> 
-              <h2> View Fantasy Teams</h2> 
+              <h2 className={"header"}> View Fantasy Teams</h2> 
               <select  onChange={handleTeamSelect} value={selectedTeam}>
                   <option value="none selected">select team</option>
                   {optionDropdown()}
