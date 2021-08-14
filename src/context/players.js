@@ -6,7 +6,7 @@ function PlayersProvider( {children} ) {
 
     const [players, setPlayers] = useState([])
     const value = [players, setPlayers]
-    console.log("Players in context: ", players)
+    // console.log("Players in context: ", players)
     return(
         <PlayersContext.Provider value={value}>
             {children}

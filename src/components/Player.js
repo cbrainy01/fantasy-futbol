@@ -41,11 +41,7 @@ function Player({comparisonResults, player, fantasyTeams, onTeamAssign}) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log("steammyid: ", selectedTeamId)
         const team = fantasyTeams.find( (team) => team.id == selectedTeamId )
-        // const rosterLength = fantasyTeams.find( (team) => team.id == selectedTeamId ).roster.length
-        // debugger
-        // const rosterLength = fantasyTeams.find( (team) => team.id == selectedTeamId ).roster.length
         if(selectedTeamId === "none selected") {
             alert("Please select a team")
         }
@@ -65,8 +61,8 @@ function Player({comparisonResults, player, fantasyTeams, onTeamAssign}) {
         // Find out of player status is "signed" or fantasy_team isnt nil
         // then block that submit request with an alert
     }
-    console.log("SELECTED TEAM Id IS: ", selectedTeamId)
-    console.log("COMPARISONRESULTS IS: ", comparisonResults)
+    // console.log("SELECTED TEAM Id IS: ", selectedTeamId)
+    // console.log("COMPARISONRESULTS IS: ", comparisonResults)
     const style2 = {fontWeight: "900"}
     const style3 = {fontSize: "1.25em"}
     return (

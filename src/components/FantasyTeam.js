@@ -11,10 +11,6 @@ function FantasyTeam({onTeamDelete, onRelease, team}) {
         console.log("ID: ", idOfTeamToDelete)
         onTeamDelete(team.id)
     }
-    // console.log("TEAM : ", team)
-    // console.log("TEAM KEYS : ", Object.keys(team) )
-    // console.log("Roster length : ", team.roster.length)
-    // console.log("ROSTER: ", team.roster)
     
     function renderRoster() {
     if(Object.keys(team).includes("roster") && team.roster_count > 0) { return team.roster.map( (player) => <RosterPlayer key={uuid()} onRelease={onRelease} player={player}/> )}

@@ -3,7 +3,6 @@ import {useEffect, useState} from 'react'
 
 function CreateFantasyTeam({onTeamCreate}) {
     
-    // const [newTeamInfo, setNewTeamInfo] = useState({teamName: "", ownerName: ""})
     const [newTeamInfo, setNewTeamInfo] = useState({name: "", owner: ""})
 
     // post an object that looks like this {name: userinputname, owner: userinputowner}
@@ -37,10 +36,8 @@ function CreateFantasyTeam({onTeamCreate}) {
                     owner: responseData.fantasy_team.owner,
                     roster_count: 0,
                     roster: []
-                    // where teams players will be handled.
                 }
                 onTeamCreate(newTeam)
-                // setNewTeamInfo("")
             }
         )
         }
@@ -52,7 +49,6 @@ function CreateFantasyTeam({onTeamCreate}) {
         setNewTeamInfo( {...newTeamInfo, [e.target.name]: e.target.value} )
         
     }
-    // console.log("NEWTEAMINFO", newTeamInfo)
     
     return (
         <div>

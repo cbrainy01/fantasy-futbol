@@ -19,7 +19,7 @@ function Players() {
       .then( responseData => { setPlayers(responseData.players); console.log("PLAYERS: ", responseData.players) }  )
     }, [])
 
-    // should only run if both slot1 and slot2 players are not equal to "none selected". A do while perhaps?
+    // should only run if both slot1 and slot2 players are not equal to "none selected". 
     function compareStats() {
         const player1Results = {}
         const player2Results = {}
@@ -45,13 +45,10 @@ function Players() {
                 player2Results[category] = "tie"
             }
         } )
-        // setP1Results(player1Results)
-        // setP2Results(player2Results)
-        console.log("1: ", player1Results,"2: ", player2Results)
+        // console.log("1: ", player1Results,"2: ", player2Results)
         const outputArray = [player1Results, player2Results]
         return outputArray
     }
-    console.log("SLot1 Player: ", slot1Player)
 
     function optionDropdown1() {
 
@@ -73,16 +70,16 @@ function Players() {
         const playerObj = players.find( (player) => player.id == event.target.value )
         setSlot1Player(playerObj)
 
-        console.log("Player object: ", playerObj)
-        console.log("selected player's id: ", event.target.value)
+        // console.log("Player object: ", playerObj)
+        // console.log("selected player's id: ", event.target.value)
     }
     function handleSlot2Change(event) {
 
         const playerObj = players.find( (player) => player.id == event.target.value )
         setSlot2Player(playerObj)
         
-        console.log("Player object: ", playerObj)
-        console.log("selected player's id: ", event.target.value)
+        // console.log("Player object: ", playerObj)
+        // console.log("selected player's id: ", event.target.value)
     }
 
     function renderSlot1() {
@@ -109,7 +106,6 @@ function Players() {
         {
             method: "PATCH",
             headers: {"Content-Type": "application/json"},
-            // push 
             body: JSON.stringify({"fantasy_team_id": teamId, "status": "signed"})
         })
         .then( (r)=>r.json() )
@@ -127,21 +123,14 @@ function Players() {
             const after = fantasyTeams.slice(indexOfPatch + 1)
             teamToPatch.roster.push(rData.player)
             teamToPatch.roster_count += 1;
-            // const updatedRoster = teamToPatch.roster.concat(rData.player)
             const test = [...before, teamToPatch, ...after]
-            debugger
             setFantasyTeams([...before, teamToPatch, ...after])
-            // debugger
-            // setFantasyTeams([...beforeTeamArray, { ...fantasyTeams[rIndexTeam], roster: [...fantasyTeams[rIndexTeam].roster, rData.player] }, ...afterTeamArray])
             
         } )
-    console.log("fantasy teams: ", fantasyTeams)
 
     }
-    console.log("fantasy teams: ", fantasyTeams)
-    console.log("PLAYERS after patch: ", players)
-
-    // const renderPlayers = players.map( player => <Player key={player.id} player={player}/> )
+    // console.log("fantasy teams: ", fantasyTeams)
+    // console.log("PLAYERS after patch: ", players)
     
     return (
         <div>

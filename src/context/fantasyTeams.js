@@ -6,7 +6,7 @@ function FantasyTeamsProvider( {children} ) {
 
     const [fantasyTeams, setFantasyTeams] = useState([])
     const value = [fantasyTeams, setFantasyTeams]
-    console.log("Fantasy teams in context: ", fantasyTeams)
+    // console.log("Fantasy teams in context: ", fantasyTeams)
     return(
         <FantasyTeamsContext.Provider value={value}>
             {children}
