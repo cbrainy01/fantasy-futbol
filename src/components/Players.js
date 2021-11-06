@@ -14,7 +14,7 @@ function Players() {
     const [fantasyTeams, setFantasyTeams] = useContext(FantasyTeamsContext)    
 
     useEffect(() => {
-      fetch("http://localhost:9393/players/")
+      fetch("https://pacific-peak-93166.herokuapp.com/players/")
       .then(r => r.json())
       .then( responseData => { setPlayers(responseData.players); console.log("PLAYERS: ", responseData.players) }  )
     }, [])
@@ -93,7 +93,7 @@ function Players() {
     }
     function renderSlot2() {
         if(slot2Player === "none selected") {
-            return <div>No player selected</div>
+            return <div>No Player Selected</div>
         }
         else {
             const selectPlayer = players.find( (player) => player.id === slot2Player.id )
@@ -102,7 +102,7 @@ function Players() {
     }
 
     function handleTeamAssign(playerId, teamId) {
-        fetch(`http://localhost:9393/players/${playerId}`,
+        fetch(`https://pacific-peak-93166.herokuapp.com/players/${playerId}`,
         {
             method: "PATCH",
             headers: {"Content-Type": "application/json"},
