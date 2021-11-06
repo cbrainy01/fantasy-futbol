@@ -12,13 +12,13 @@ function Players() {
     const [slot1Player, setSlot1Player] = useState("none selected")
     const [slot2Player, setSlot2Player] = useState("none selected")
     const [fantasyTeams, setFantasyTeams] = useContext(FantasyTeamsContext)    
-
+    console.log(slot1Player)
     useEffect(() => {
       fetch("https://pacific-peak-93166.herokuapp.com/players/")
       .then(r => r.json())
       .then( responseData => { setPlayers(responseData.players); console.log("PLAYERS: ", responseData.players) }  )
-    }, [])
-
+      .catch( err => console.log("err: ", err) )
+    }, [] )
     // should only run if both slot1 and slot2 players are not equal to "none selected". 
     function compareStats() {
         const player1Results = {}
@@ -56,7 +56,11 @@ function Players() {
         const renderPlayers = players.map( (player)=>{
             return <option key={uuid()} value={player.id}>{player.name}</option>
         } )
-       return renderPlayers
+        return (<>
+            <option value="none selected">select player</option>
+            {renderPlayers}
+        </>)
+        //    return renderPlayers
     }
     function optionDropdown2() {
 
@@ -68,15 +72,15 @@ function Players() {
 
     function handleSlot1Change(event) {
 
-        const playerObj = players.find( (player) => player.id === event.target.value )
+        const selectedPlayerId = parseInt(event.target.value, 10)
+        const playerObj = players.find( (player) => player.id === selectedPlayerId )
+        
         setSlot1Player(playerObj)
-
-        // console.log("Player object: ", playerObj)
-        // console.log("selected player's id: ", event.target.value)
     }
     function handleSlot2Change(event) {
 
-        const playerObj = players.find( (player) => player.id === event.target.value )
+        const selectedPlayerId = parseInt(event.target.value, 10)
+        const playerObj = players.find( (player) => player.id === selectedPlayerId )
         setSlot2Player(playerObj)
         
         // console.log("Player object: ", playerObj)
@@ -140,8 +144,7 @@ function Players() {
            <div className={"player-comps"}>
                <div>
                     <h3>Slot 1</h3>
-                    <select className={"dropdown"} onChange={handleSlot1Change}>
-                        <option value={"none selected"}>select player</option>
+                    <select className={"dropdown"} onChange={handleSlot1Change} value={slot1Player === "none selected" ?  "none selected": slot1Player.name}>
                         {optionDropdown1()}
                     </select>
                     {renderSlot1()}

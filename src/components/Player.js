@@ -36,7 +36,8 @@ function Player({comparisonResults, player, fantasyTeams, onTeamAssign}) {
     }
 
     function handleChange(e) {
-        setSelectedTeamId(e.target.value)
+        const selectedTeamId = parseInt(e.target.value, 10)
+        setSelectedTeamId(selectedTeamId)
     }
 
     function handleSubmit(e) {

@@ -10,6 +10,7 @@ import "../styling/fantasyTeams.css"
 function FantasyTeams() {
     
     const [selectedTeam, setSelectedTeam] = useState("none selected")
+    // const [fantasyTeams, setFantasyTeams] = useState([])
     const [fantasyTeams, setFantasyTeams] = useContext(FantasyTeamsContext)
     const [players, setPlayers] = useContext(PlayersContext)
 
@@ -18,7 +19,7 @@ function FantasyTeams() {
       .then(r => r.json())
       .then( responseData => { setFantasyTeams(responseData.teams); /*console.log("INITIAL FETCH: ", responseData.teams)*/ }  )
     }, [])
-    
+    console.log("fantasy teams: ", fantasyTeams)
     function handleTeamCreate(newTeam) {
         setFantasyTeams([...fantasyTeams, newTeam])
     }
@@ -31,7 +32,8 @@ function FantasyTeams() {
     }
 
     function handleTeamSelect(e) {
-        setSelectedTeam(e.target.value)
+        const selectedTeamId = parseInt(e.target.value, 10)
+        setSelectedTeam(selectedTeamId)
     }
     // console.log("SELECTED TEAM: ", selectedTeam)
 
