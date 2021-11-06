@@ -27,7 +27,8 @@ function Players() {
         const keys = Object.keys(slot1Player)
         // console.log("keys BEFORE Filter: ", keys)
         const categories = keys.filter( (attribute) => {
-            if(attribute != "id" && attribute != "name" && attribute != "image" && attribute != "position" && attribute != "league" && attribute != "status" && attribute != "fantasy_team" ) {return true}
+            if(attribute != "id" && attribute !== "name" && attribute !== "image" && attribute !== "position" && attribute !== "league" && attribute !== "status" && attribute !== "fantasy_team" ) {return true}
+            else {return false}
         } )
 
         // console.log("CATEGORIES: ", categories)
@@ -67,7 +68,7 @@ function Players() {
 
     function handleSlot1Change(event) {
 
-        const playerObj = players.find( (player) => player.id == event.target.value )
+        const playerObj = players.find( (player) => player.id === event.target.value )
         setSlot1Player(playerObj)
 
         // console.log("Player object: ", playerObj)
@@ -75,7 +76,7 @@ function Players() {
     }
     function handleSlot2Change(event) {
 
-        const playerObj = players.find( (player) => player.id == event.target.value )
+        const playerObj = players.find( (player) => player.id === event.target.value )
         setSlot2Player(playerObj)
         
         // console.log("Player object: ", playerObj)
@@ -123,7 +124,7 @@ function Players() {
             const after = fantasyTeams.slice(indexOfPatch + 1)
             teamToPatch.roster.push(rData.player)
             teamToPatch.roster_count += 1;
-            const test = [...before, teamToPatch, ...after]
+            // const test = [...before, teamToPatch, ...after]
             setFantasyTeams([...before, teamToPatch, ...after])
             
         } )

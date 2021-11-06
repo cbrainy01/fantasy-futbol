@@ -1,5 +1,5 @@
 import React from 'react'
-import {useEffect, useState} from 'react'
+import { useState } from 'react'
 
 function CreateFantasyTeam({onTeamCreate}) {
     
@@ -10,7 +10,7 @@ function CreateFantasyTeam({onTeamCreate}) {
     function handleSubmit(e) {
         e.preventDefault();
 
-        if(newTeamInfo.name.length == 0 || newTeamInfo.owner.length == 0) {
+        if(newTeamInfo.name.length === 0 || newTeamInfo.owner.length === 0) {
             alert("please fill out both fields")
         }
 

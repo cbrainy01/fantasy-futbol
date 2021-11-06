@@ -10,7 +10,7 @@ function RosterPlayer({player, onRelease}) {
     return (
         <div>
             <p>{player.position}-{player.name}</p>
-            <img src={player.image} width={"75"} height={"75"} />
+            <img src={player.image} width={"75"} height={"75"} alt={`${player.name}`}/>
             <form value={player.id} onSubmit={handleSubmit}><button>remove from team</button></form>
             <p>______________________</p>
         </div>

@@ -9,23 +9,23 @@ function Player({comparisonResults, player, fantasyTeams, onTeamAssign}) {
     
 
     function goalComparison() {
-        if(comparisonResults.goals == "win") {return "limegreen"}
+        if(comparisonResults.goals === "win") {return "limegreen"}
         else if(comparisonResults.goals == "lose") {return "red"}
         else {return "black"}
     }
     function assistComparison() {
-        if(comparisonResults.assists == "win") {return "limegreen"}
+        if(comparisonResults.assists === "win") {return "limegreen"}
         else if(comparisonResults.assists == "lose") {return "red"}
         else {return "black"}
     }
     function involvementComparison() {
-        if(comparisonResults.goal_involvements == "win") {return "limegreen"}
-        else if(comparisonResults.goal_involvements == "lose") {return "red"}
+        if(comparisonResults.goal_involvements === "win") {return "limegreen"}
+        else if(comparisonResults.goal_involvements === "lose") {return "red"}
         else {return "black"}
     }
     function saveComparison() {
-        if(comparisonResults.saves == "win") {return "limegreen"}
-        else if(comparisonResults.saves == "lose") {return "red"}
+        if(comparisonResults.saves === "win") {return "limegreen"}
+        else if(comparisonResults.saves === "lose") {return "red"}
         else {return "black"}
     }
 
@@ -41,7 +41,7 @@ function Player({comparisonResults, player, fantasyTeams, onTeamAssign}) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        const team = fantasyTeams.find( (team) => team.id == selectedTeamId )
+        const team = fantasyTeams.find( (team) => team.id === selectedTeamId )
         if(selectedTeamId === "none selected") {
             alert("Please select a team")
         }
@@ -69,7 +69,7 @@ function Player({comparisonResults, player, fantasyTeams, onTeamAssign}) {
         <div className={"player"}>
             <h3>{player.name}</h3>
             {/* hard code image size */}
-            <img src={player.image} alt={`image of ${player.name}`} width={"200"} height={"350"}/>
+            <img src={player.image} alt={`${player.name}`} width={"200"} height={"350"}/>
             <p>position: {player.position}</p>
             <p>Fantasy team: {player.fantasy_team == null? "no team": `${player.fantasy_team.name}` }</p>
             <p>Goals: </p><p style={{color: `${goalComparison()}`, ...style2, ...style3 }}>{player.goals}</p>

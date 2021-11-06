@@ -5,7 +5,6 @@ import FantasyTeam from './FantasyTeam'
 import {v4 as uuid} from "uuid"
 import { FantasyTeamsContext } from "../context/fantasyTeams"
 import { PlayersContext } from "../context/players"
-import RosterPlayer from './RosterPlayer'
 import "../styling/fantasyTeams.css"
 
 function FantasyTeams() {
@@ -47,8 +46,8 @@ function FantasyTeams() {
         .then( (rData) => {
             // adjust players accordingly. go to that particular player and change their status from signed to free agent, set thier team to null
             const indexOfPlayerToPatch = players.findIndex( (player) => player.id === playerId )
-            const beforePatchedPlayer = players.slice(0, indexOfPlayerToPatch)
-            const afterPatchedPlayer = players.slice(indexOfPlayerToPatch)
+            // const beforePatchedPlayer = players.slice(0, indexOfPlayerToPatch)
+            // const afterPatchedPlayer = players.slice(indexOfPlayerToPatch)
             const patchedPlayer = players.find( (player) => player.id === playerId )
             //adjust players attributes
             patchedPlayer.fantasy_team = null
@@ -67,11 +66,11 @@ function FantasyTeams() {
     }
 
     function renderSelectedTeam() {
-        if(selectedTeam == "none selected") {
+        if(selectedTeam === "none selected") {
             return <p>no team selected</p>
         }
         else {
-        const teamObj = fantasyTeams.find( (team) => team.id == selectedTeam )
+        const teamObj = fantasyTeams.find( (team) => team.id === selectedTeam )
             return <FantasyTeam onTeamDelete={handleTeamDelete} onRelease={handleRelease} team={teamObj}/>
         }
     }
@@ -79,7 +78,7 @@ function FantasyTeams() {
     function handleTeamDelete(deleteId) {
         fetch( `https://pacific-peak-93166.herokuapp.com/fantasy_teams/${deleteId}`, {method: "DELETE"} )
        
-            const newTeams = fantasyTeams.filter( team => team.id != deleteId )
+            const newTeams = fantasyTeams.filter( team => team.id !== deleteId )
             setFantasyTeams(newTeams)
             setSelectedTeam("none selected")
         //with players variable, go find all players that were part of that team and set their fantasy team to null and status to free agent 
