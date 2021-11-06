@@ -45,7 +45,7 @@ function FantasyTeams() {
         .then( (r)=>r.json() )
         .then( (rData) => {
             // adjust players accordingly. go to that particular player and change their status from signed to free agent, set thier team to null
-            const indexOfPlayerToPatch = players.findIndex( (player) => player.id === playerId )
+            // const indexOfPlayerToPatch = players.findIndex( (player) => player.id === playerId )
             // const beforePatchedPlayer = players.slice(0, indexOfPlayerToPatch)
             // const afterPatchedPlayer = players.slice(indexOfPlayerToPatch)
             const patchedPlayer = players.find( (player) => player.id === playerId )

@@ -10,12 +10,12 @@ function Player({comparisonResults, player, fantasyTeams, onTeamAssign}) {
 
     function goalComparison() {
         if(comparisonResults.goals === "win") {return "limegreen"}
-        else if(comparisonResults.goals == "lose") {return "red"}
+        else if(comparisonResults.goals === "lose") {return "red"}
         else {return "black"}
     }
     function assistComparison() {
         if(comparisonResults.assists === "win") {return "limegreen"}
-        else if(comparisonResults.assists == "lose") {return "red"}
+        else if(comparisonResults.assists === "lose") {return "red"}
         else {return "black"}
     }
     function involvementComparison() {

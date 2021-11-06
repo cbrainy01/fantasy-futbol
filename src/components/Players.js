@@ -27,7 +27,7 @@ function Players() {
         const keys = Object.keys(slot1Player)
         // console.log("keys BEFORE Filter: ", keys)
         const categories = keys.filter( (attribute) => {
-            if(attribute != "id" && attribute !== "name" && attribute !== "image" && attribute !== "position" && attribute !== "league" && attribute !== "status" && attribute !== "fantasy_team" ) {return true}
+            if(attribute !== "id" && attribute !== "name" && attribute !== "image" && attribute !== "position" && attribute !== "league" && attribute !== "status" && attribute !== "fantasy_team" ) {return true}
             else {return false}
         } )
 
