@@ -14,7 +14,7 @@ function Players() {
     const [fantasyTeams, setFantasyTeams] = useContext(FantasyTeamsContext)    
     console.log(slot1Player)
     useEffect(() => {
-      fetch("https://pacific-peak-93166.herokuapp.com/players/")
+      fetch("https://fantasy-futbol-backend.herokuapp.com/players/")
       .then(r => r.json())
       .then( responseData => { setPlayers(responseData.players); console.log("PLAYERS: ", responseData.players) }  )
       .catch( err => console.log("err: ", err) )
@@ -107,7 +107,7 @@ function Players() {
     }
 
     function handleTeamAssign(playerId, teamId) {
-        fetch(`https://pacific-peak-93166.herokuapp.com/players/${playerId}`,
+        fetch(`https://fantasy-futbol-backend.herokuapp.com/players/${playerId}`,
         {
             method: "PATCH",
             headers: {"Content-Type": "application/json"},

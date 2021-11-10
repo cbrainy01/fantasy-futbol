@@ -15,7 +15,7 @@ function FantasyTeams() {
     const [players, setPlayers] = useContext(PlayersContext)
 
     useEffect(() => {
-        fetch("https://pacific-peak-93166.herokuapp.com/fantasy_teams")
+        fetch("https://fantasy-futbol-backend.herokuapp.com/fantasy_teams")
       .then(r => r.json())
       .then( responseData => { setFantasyTeams(responseData.teams); /*console.log("INITIAL FETCH: ", responseData.teams)*/ }  )
     }, [])
@@ -38,7 +38,7 @@ function FantasyTeams() {
     // console.log("SELECTED TEAM: ", selectedTeam)
 
     function handleRelease(playerId, teamId) {
-        fetch(`https://pacific-peak-93166.herokuapp.com/players/${playerId}`,
+        fetch(`https://fantasy-futbol-backend.herokuapp.com/players/${playerId}`,
         {
             method: "PATCH",
             headers: {"Content-Type": "application/json"},
@@ -78,7 +78,7 @@ function FantasyTeams() {
     }
 
     function handleTeamDelete(deleteId) {
-        fetch( `https://pacific-peak-93166.herokuapp.com/fantasy_teams/${deleteId}`, {method: "DELETE"} )
+        fetch( `https://fantasy-futbol-backend.herokuapp.com/fantasy_teams/${deleteId}`, {method: "DELETE"} )
        
             const newTeams = fantasyTeams.filter( team => team.id !== deleteId )
             setFantasyTeams(newTeams)

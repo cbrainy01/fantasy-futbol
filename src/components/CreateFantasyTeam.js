@@ -15,7 +15,7 @@ function CreateFantasyTeam({onTeamCreate}) {
         }
 
         else {
-        fetch("https://pacific-peak-93166.herokuapp.com/fantasy_teams/", {
+        fetch("https://fantasy-futbol-backend.herokuapp.com/fantasy_teams/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
